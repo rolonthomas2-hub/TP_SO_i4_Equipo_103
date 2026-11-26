@@ -15,3 +15,34 @@ BLUE, porque en el punto 16 GAMMA hizo el merge de TESTING hacia MASTER después
 
 D- ¿Qué favicon quedó en el MASTER el de ALFA o el de BETA?
 Quedó el favicon de BETA. Aunque ALFA subió su favicon.ico en el punto 4, BETA lo reemplazó en el punto 5 dentro de TESTING, y luego esos cambios se propagaron a DESARROLLO (mediante los merges de los puntos 5 y 8) y finalmente a MASTER (en los merges de los puntos 10, 15 y 16).
+
+E- ¿Algún integrante tuvo problemas al hacer el push?
+BETA tuvo problemas con el push, ya que ALFA pusheó su <p> y el remoto tiene un commit que BETA no tiene.
+
+F- ¿Qué problemas surgieron?
+Gamma al hacer merge de TESTING hacia main, Git chocó en estilo.css porque una rama tenía un color de background (yellow) y la otra otro (blue), y no sabía cuál elegir. Por eso frenó el merge y dejó las marcas <<<<<<< HEAD, ======= y >>>>>>> TESTING en el archivo.
+Tambien a BETA le surgió un error al ingresar este comando: git log --oneline --all --graph.
+
+G- ¿Qué soluciones pueden aplicar y cual seria la consecuencia de cada solución
+adoptada?
+GAMMA editó el CSS, lo hizo desde la bash, cambiándole el background a blue, ya que quedaron fusionados con yellow al hacer merge de testing en main, y borró las marcas (<<< y ===) y optó por elegir el background blue.
+En git log --oneline --all --graph al no saber resolverlo, beta simplemente borro el archivo y lo volvio a clonar para resolverlo.
+
+H- ¿Qué sucede si cada uno utiliza el push -f?
+Se pisan los cambios porque cada push -f sobrescribe la rama remota con la copia local del que lo ejecuta, pudiendo borrar los <p> que subió el compañero anterior.
+
+ Se pierde el trabajo ya que al final queda solo lo que tenga en su historial el último en forzar el push.
+
+Se desincroniza, el historial remoto cambia de golpe y los demás quedan desfasados en sus repositorios locales.
+
+
+I- ¿Qué debo hacer para que el index.html tengas todos los <p> de los puntos 18,19 y 20 en DESARROLLO ?
+Primero hay que unificar los tres <p> en TESTING (cada uno hace git pull, resuelve el conflicto en index.html dejando todos los <p> y pushea). Después se hace el merge de TESTING a DESARROLLO:
+
+En la bash:
+git checkout DESARROLLO
+git pull origin DESARROLLO
+git merge TESTING
+git push origin DESARROLLO
+
+Si hay conflicto en index.html, se resuelve dejando los tres <p>, y luego git add index.html, git commit y git push origin DESARROLLO.
