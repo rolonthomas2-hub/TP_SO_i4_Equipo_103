@@ -1,0 +1,17 @@
+Apellido y nombre de los alumnos que participaron de la interacción:
+- ALFA: Thames, Ciro
+- BETA: Pagliaroli, Joaquín
+- GAMMA: Rolón, Thomas
+
+
+A- ¿Qué color de fondo tiene su página en el TESTING ?
+BLUE (el último cambio realizado por BETA en el punto 12).
+
+B- ¿Qué color de fondo tiene su página en el DESARROLLO ?
+YELLOW (el último cambio realizado por ALFA en el punto 13).
+
+C- ¿Qué color de fondo tiene su página en el MASTER?
+BLUE, porque en el punto 16 GAMMA hizo el merge de TESTING hacia MASTER después de haber mergeado DESARROLLO, y al resolver el conflicto en estilo.css prevaleció el último cambio traído desde TESTING (BLUE).
+
+D- ¿Qué favicon quedó en el MASTER el de ALFA o el de BETA?
+Quedó el favicon de BETA. Aunque ALFA subió su favicon.ico en el punto 4, BETA lo reemplazó en el punto 5 dentro de TESTING, y luego esos cambios se propagaron a DESARROLLO (mediante los merges de los puntos 5 y 8) y finalmente a MASTER (en los merges de los puntos 10, 15 y 16).
